@@ -77,7 +77,7 @@ public class Main{
                                                 }
                                         }
                                         System.out.println("Oldest university:"+oldest.getName()+" founded in "+oldyear );
-                                        System.out.println("Most experienced professor:"+maxexpr.getName()+" with "+maxexp+" years");
+                                        System.out.println("Most experienced professor its a:"+maxexpr.getName()+" with "+maxexp+" years");
                                 }
                         }else if(a==5){
                                 System.out.println("Program terminated");
