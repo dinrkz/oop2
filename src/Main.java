@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class Main{
         public static void main(String[] args) {
                 Scanner in=new Scanner(System.in);
-                ArrayList<Professor> professors=new ArrayList<>();
-                ArrayList<University> universities=new ArrayList<>();
+                ArrayList<Entity>entities=new ArrayList<>();
                 while(true) {
                         System.out.println("Welcome to University Management System");
                         System.out.println("Write down what service you need.");
@@ -31,8 +30,7 @@ public class Main{
                                 String knwl=in.nextLine();
                                 System.out.println("6.Enter your personal qualities (you can leave it blank)");
                                 String prq=in.nextLine();
-                                Professor professor=new Professor(name,age,dep,exp,knwl,prq);
-                                professors.add(professor);
+                                entities.add(new Professor(name,age,dep,exp,knwl,prq));
                                 System.out.println("Added Professor!");
                         }else if(a==2){
                                 System.out.println("1.Name of University:");
@@ -46,40 +44,81 @@ public class Main{
                                 in.nextLine();
                                 System.out.println("5.Enter the course:");
                                 String cour=in.nextLine();
-                                University university=new University(name,loc,edud,year,cour);
-                                universities.add(university);
+                                entities.add(new University(name,loc,edud,year,cour));
                                 System.out.println("Added the University!");
                         }else if(a==3){
-                                for(Professor prof:professors){
-                                        prof.showInfo();
+                                System.out.println("What list do you need?"+"\n");
+                                System.out.println("1-University " +
+                                        "2-Professors " +
+                                        "3-Anything ");
+                                System.out.println("Choose the number:");
+                                int s=in.nextInt();
+                                in.nextLine();
+                                if(s==1){
+                                        for(Entity i:entities){
+                                                if(i instanceof University) i.showInfo();
+                                        }
                                 }
-                                for(University univ:universities){
-                                        univ.showInfo();
+                                if(s==2){
+                                        for(Entity i: entities){
+                                                if(i instanceof Professor) i.showInfo();
+                                        }
+                                }
+                                if(s==3){
+                                        for(Entity i:entities){
+                                                System.out.println(i.toString());
+                                        }
+                                }else{
+                                        System.out.println("Incorrect number! Returning to main menu. \n");
                                 }
                         }else if(a==4){
-                                if(professors.size()<2 || universities.size()<2){
-                                        System.out.println("Not enough data to compare");
-                                }else{
-                                        int maxexp=0;
-                                        Professor maxexpr=null;
-                                        int oldyear=0;
-                                        University oldest=null;
-                                        for(Professor prof:professors){
-                                                if(prof.getExperience()>maxexp){
-                                                        maxexp=prof.getExperience();
-                                                        maxexpr=prof;
-                                                }
-                                        }
-                                        for(University univ: universities){
-                                                if(univ.getYear()>oldyear){
-                                                        oldyear=univ.getYear();
-                                                        oldest=univ;
-                                                }
-                                        }
-                                        System.out.println("Oldest university:"+oldest.getName()+" founded in "+oldyear );
-                                        System.out.println("Most experienced professor its a:"+maxexpr.getName()+" with "+maxexp+" years");
+                                int profcount=0;
+                                int univercount=0;
+                                for(Entity i:entities){
+                                        if(i instanceof Professor) profcount++;
+                                        else if(i instanceof University)univercount++;
                                 }
-                        }else if(a==5){
+                                if(profcount<2){
+                                        System.out.println("No compare with professors");
+                                        continue;
+                                }
+                                if(univercount<2){
+                                        System.out.println("NO compare with universities");
+                                        continue;
+                                }
+                                        System.out.println("Compare options:");
+                                        System.out.println("1 - Most experienced professor");
+                                        System.out.println("2 - Youngest university");
+                                        System.out.print("Choose the number: ");
+                                        int option = in.nextInt();
+                                        in.nextLine();
+                                        if(option==1){
+                                                Professor mostexprn=null;
+                                                int maxexp=-1;
+                                                for(Entity e :entities){
+                                                        if(e instanceof Professor pro){
+                                                                if(pro.getExperience()>maxexp){
+                                                                        maxexp=pro.getExperience();
+                                                                        mostexprn=pro;
+                                                                }
+                                                        }
+                                                }
+                                                System.out.println("The most Expirence Professor:"+mostexprn.getName()+maxexp+"years experience.");
+                                        } else if (option==2) {
+                                                University younguniver=null;
+                                                int minage=9999;
+                                                for(Entity e: entities){
+                                                        if(e instanceof University uni){ int age=uni.getYear();
+                                                                if(minage>age){
+                                                                        minage=age;
+                                                                        younguniver=uni;
+                                                                }
+                                                        }
+                                                }
+                                                System.out.println("Youngest University its a:"+ younguniver.getName()+minage+"years.");
+                                        }
+                                }
+                        if(a==5){
                                 System.out.println("Program terminated");
                                 break;
                         }

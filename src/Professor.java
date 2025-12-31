@@ -1,12 +1,12 @@
-public class Professor {
-    private String name;
+import java.util.Objects;
+public class Professor extends Entity {
     private int age;
     private String dep;
     private int experience;
     private String knowledge;
-    String personalqual;
+    private String personalqual;
     public Professor(String name, int age, String dep, int experience, String knowledge,String personalqual){
-        this.name=name;
+        super(name);
         this.age=age;
         this.dep=dep;
         this.experience=experience;
@@ -18,9 +18,6 @@ public class Professor {
         }
     }
 
-    public String getName(){
-        return name;
-    }
     public int getAge(){
         return age;
     }
@@ -64,6 +61,15 @@ public class Professor {
         this.personalqual = personalqual;
     }
     public void showInfo(){
-        System.out.println("Professor:"+name+","+age+"years old. Department: "+dep+" work experience: "+experience+" years,Study knowledge: "+knowledge+" and Personal Quality: "+personalqual);
+        System.out.println(this.toString());
+    }
+    public String toString() {
+        return "Professor{"+"name=' "+name+ '\'' +", age=' "+age+'\''+", department=' "+dep+'\''+", experience= '"+experience+'\''+", knowledge=' "+knowledge+'\''+", personal quality=' "+personalqual+'\''+"}";
+    }
+    public int hashCode(){
+        return Objects.hash(name,age,dep,experience);
+    }
+    public boolean equals(Objects obj){
+        return true;
     }
 }

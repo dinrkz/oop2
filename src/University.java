@@ -1,11 +1,12 @@
-public class University {
-    private String name;
+import java.util.Objects;
+
+public class University extends Entity{
     private String location;
     private String course;
     private String  educationdirect;
     private int year;
     public University(String name, String location, String educationdirect, int year, String course){
-        this.name=name;
+        super(name);
         this.location=location;
         this.educationdirect=educationdirect;
         this.year=year;
@@ -50,6 +51,15 @@ public class University {
         this.course = course;
     }
     public void showInfo(){
-        System.out.println("University:"+name+", created in "+year+". Location: "+location+". Education direct its a "+educationdirect+". Teached:"+course+" courses.");
+        System.out.println(this.toString());
+    }
+    public String toString() {
+        return "University:"+name+", created in "+year+". Location: "+location+". Education direct its a "+educationdirect+". Teached:"+course+" courses.";
+    }
+    public int hashCode(){
+        return Objects.hash(name, location, educationdirect, year);
+    }
+    public boolean equals(Objects obj){
+        return true;
     }
 }
