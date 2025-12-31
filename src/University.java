@@ -54,7 +54,7 @@ public class University extends Entity{
         System.out.println(this.toString());
     }
     public String toString() {
-        return "University:"+name+", created in "+year+". Location: "+location+". Education direct its a "+educationdirect+". Teached:"+course+" courses.";
+        return  "University:"+name+", created in "+year+". Location: "+location+". Education direct its a "+educationdirect+". Teached:"+course+" courses.";
     }
     public int hashCode(){
         return Objects.hash(name, location, educationdirect, year);
