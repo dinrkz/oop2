@@ -12,9 +12,9 @@ public class Main{
                                 "2-add university \n" +
                                 "3-showing everything \n" +
                                 "4-sorting tables\n" +
-                                "5-quit \n" +
-                                "6-delete table from DB \n" +
-                                "7-update data(University/Professor)");
+                                "5-delete table from DB \n" +
+                                "6-update data(University/Professor)\n" +
+                                "7-quit");
                         System.out.print("Choose your number:");
                         int a = in.nextInt();
                         in.nextLine();
@@ -88,12 +88,7 @@ public class Main{
                                 if (s == 2) {
                                         dbManager.UniversitiessortedbyYear();
                                 }
-                        }
-                        if (a == 5) {
-                                System.out.println("Program terminated");
-                                break;
-                        }
-                        if (a == 6) {
+                        }else if (a == 5) {
                                 System.out.println("Select which database you want to delete?\n" +
                                         "1-Professors\n" +
                                         "2-Universities");
@@ -110,8 +105,7 @@ public class Main{
                                         String name = in.nextLine();
                                         dbManager.deleteUniversity(name);
                                 }
-                        }
-                        if (a == 7) {
+                        }else if (a == 6) {
                                 System.out.println("What do you want to update?\n" +
                                         "1-Location University\n" +
                                         "2-Experience Professors\n" +
@@ -134,6 +128,10 @@ public class Main{
                                         in.nextLine();
                                         dbManager.updateProfessorExperience(name,exp);
                                 }
+
+                        }else if (a == 7) {
+                                System.out.println("Program terminated");
+                                break;
                         }
                 }
 
