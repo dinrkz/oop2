@@ -13,7 +13,7 @@ public class Main{
                                 "3-showing everything \n" +
                                 "4-sorting tables\n" +
                                 "5-quit \n" +
-                                "6-show Tables from DB \n" +
+                                "6-delete table from DB \n" +
                                 "7-update data(University/Professor)");
                         System.out.print("Choose your number:");
                         int a = in.nextInt();
@@ -96,7 +96,7 @@ public class Main{
                         if (a == 6) {
                                 System.out.println("Select which database you want to delete?\n" +
                                         "1-Professors\n" +
-                                        "2-Universities\n");
+                                        "2-Universities");
                                 int i = in.nextInt();
                                 in.nextLine();
                                 if (i == 1) {
