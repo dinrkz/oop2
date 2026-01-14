@@ -4,6 +4,7 @@ public class Main{
         public static void main(String[] args) {
                 Scanner in=new Scanner(System.in);
                 ArrayList<Entity>entities=new ArrayList<>();
+                DatabaseManager dbManager = new DatabaseManager();
                 while(true) {
                         System.out.println("Welcome to University Management System");
                         System.out.println("Write down what service you need.");
@@ -31,7 +32,8 @@ public class Main{
                                 System.out.println("6.Enter your personal qualities (you can leave it blank)");
                                 String prq=in.nextLine();
                                 entities.add(new Professor(name,age,dep,exp,knwl,prq));
-                                System.out.println("Added Professor!");
+                                dbManager.saveProfessor(new Professor(name,age,dep,exp,knwl,prq));
+                                System.out.println("Professor successfully saved!");
                         }else if(a==2){
                                 System.out.println("1.Name of University:");
                                 String name=in.nextLine();
@@ -44,8 +46,9 @@ public class Main{
                                 in.nextLine();
                                 System.out.println("5.Enter the course:");
                                 String cour=in.nextLine();
-                                entities.add(new University(name,loc,edud,year,cour));
-                                System.out.println("Added the University!");
+                                entities.add(new University(name, loc, edud, year, cour));
+                                dbManager.saveUniversity(new University(name, loc, edud, year, cour)); // Сохранение в БД
+                                System.out.println("University successfully saved!");
                         }else if(a==3){
                                 System.out.println("What list do you need?"+"\n");
                                 System.out.println("1-University " +
